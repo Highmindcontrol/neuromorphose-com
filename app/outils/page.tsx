@@ -88,13 +88,17 @@ export default function OutilsPage() {
 
       <section>
         <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-24">
-          <p className="meta text-gris-meta">Marques déposées</p>
+          <p className="meta text-gris-meta">Brevet & marques déposées</p>
           <p className="mt-4 text-base leading-relaxed text-gris-texte md:text-lg">
-            EndoFormia® et EndoTonia® sont des marques déposées de
-            Neuroactif Édition. Leur usage est réservé aux contextes
-            officiels de la méthode Neuromorphose®. Toute appropriation
-            commerciale en dehors du cadre fixé par Neuroactif Édition est
-            interdite.
+            EndoFormia® et EndoTonia® sont des outils cliniques brevetés
+            et des marques déposées de François Le Moing, sous licence
+            d&apos;exploitation exclusive accordée à Neuroactif Édition.
+            Leur usage est réservé aux praticiens certifiés FFPN et aux
+            contextes officiels de la méthode Neuromorphose®. Toute
+            appropriation, reproduction ou utilisation commerciale hors
+            de ce cadre est strictement interdite et passible des
+            sanctions prévues par le droit de la propriété
+            intellectuelle.
           </p>
         </div>
       </section>
