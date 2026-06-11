@@ -45,6 +45,14 @@ function extraireTexteVocal(md: string): string {
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    // Strip symboles que la synthèse vocale prononce littéralement
+    // (« marque déposée », « copyright », etc.) — visuellement on
+    // garde le ® dans le HTML rendu, c'est uniquement la voix qui
+    // doit les ignorer
+    .replace(/®/g, "")
+    .replace(/™/g, "")
+    .replace(/©/g, "")
+    .replace(/§/g, " section ")
     // Nettoie les espaces multiples
     .replace(/\s+/g, " ")
     .trim();
@@ -98,7 +106,10 @@ export default async function ChapitreManifestePage({
 
   const { precedent, suivant } = getNavigationChapitre(slug);
 
-  // Texte complet à lire : titre du chapitre + sous-titre + contenu
+  // Texte complet à lire : titre du chapitre + sous-titre + contenu.
+  // Strip final des symboles que la synthèse vocale prononcerait
+  // littéralement (cas du titre « Neuromorphose® » qui sinon devient
+  // « Neuromorphose marque déposée » à chaque chapitre).
   const texteCompletVocal = [
     entree.numero === "Liminaire"
       ? "Chapitre liminaire"
@@ -110,7 +121,10 @@ export default async function ChapitreManifestePage({
     textePourVocal,
   ]
     .filter(Boolean)
-    .join(". ");
+    .join(". ")
+    .replace(/®/g, "")
+    .replace(/™/g, "")
+    .replace(/©/g, "");
 
   return (
     <article>
