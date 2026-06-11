@@ -73,7 +73,10 @@ export function LecteurVocal({ texte }: { texte: string }) {
   const [voixDispo, setVoixDispo] = useState<SpeechSynthesisVoice[]>([]);
   const [voixChoisie, setVoixChoisie] = useState<string>("");
   const [vitesse, setVitesse] = useState<number>(1.0);
-  const utterRef = useRef<{ arreter: () => void } | null>(null);
+  const utterRef = useRef<{
+    arreter: () => void;
+    timeoutId: ReturnType<typeof setTimeout> | null;
+  } | null>(null);
 
   // Détection des voix disponibles — Chrome et Safari sont
   // asynchrones et n'envoient pas toujours l'événement onvoiceschanged
@@ -136,12 +139,27 @@ export function LecteurVocal({ texte }: { texte: string }) {
 
     return () => {
       intervals.forEach(clearTimeout);
+      // Stoppe la boucle d'enchaînement de segments AVANT de canceller
+      // la synthèse, sinon le onerror du segment courant déclenche un
+      // setTimeout qui ressuscite la lecture après le unmount.
+      utterRef.current?.arreter();
+      if (utterRef.current?.timeoutId) {
+        clearTimeout(utterRef.current.timeoutId);
+      }
       synth.cancel();
+      synth.onvoiceschanged = null;
     };
   }, []);
 
   const lancerLecture = useCallback(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
+
+    // Si une boucle précédente tourne, on l'arrête PROPREMENT avant
+    // d'en lancer une nouvelle (sinon les deux boucles cohabitent)
+    utterRef.current?.arreter();
+    if (utterRef.current?.timeoutId) {
+      clearTimeout(utterRef.current.timeoutId);
+    }
     window.speechSynthesis.cancel();
 
     const voix = voixDispo.find((v) => v.name === voixChoisie);
@@ -152,34 +170,47 @@ export function LecteurVocal({ texte }: { texte: string }) {
     // Les voix locales Apple n'ont pas cette limite mais le découpage
     // ne les pénalise pas (l'enchaînement est fluide).
     const segments = decouperPourSynthese(texte, 200);
-
     if (segments.length === 0) return;
 
-    let index = 0;
-    let arrete = false;
+    // État local de la boucle — fermé dans la closure, partagé via
+    // utterRef pour pouvoir être manipulé depuis l'extérieur (bouton
+    // Arrêter, cleanup au unmount).
+    const etat = {
+      index: 0,
+      arrete: false,
+      timeoutId: null as ReturnType<typeof setTimeout> | null,
+    };
 
     const lireSuivant = () => {
-      if (arrete || index >= segments.length) {
+      // Garde-fou unique : si on a été arrêté OU si on a fini, on
+      // ne fait plus RIEN. Cette vérification doit être en tête de
+      // fonction pour éviter toute résurrection accidentelle après
+      // un cancel() qui déclenche onerror.
+      if (etat.arrete || etat.index >= segments.length) {
         setEnLecture(false);
         setEnPause(false);
         return;
       }
-      const utter = new SpeechSynthesisUtterance(segments[index]);
+      const utter = new SpeechSynthesisUtterance(segments[etat.index]);
       if (voix) utter.voice = voix;
       utter.lang = "fr-FR";
       utter.rate = vitesse;
       utter.onend = () => {
-        index++;
+        if (etat.arrete) return;
+        etat.index++;
         lireSuivant();
       };
       utter.onerror = (e) => {
+        // Si l'erreur vient d'un cancel() explicite (arrêt utilisateur
+        // ou unmount), on ne relance surtout pas — c'est ce bug qui
+        // faisait redémarrer la lecture après changement de page.
+        if (etat.arrete) return;
         console.error("[lecteur-vocal] erreur synthèse :", e);
-        // En cas d'erreur sur un segment, on passe au suivant plutôt
-        // que d'arrêter tout (la voix Google peut planter sur un
-        // segment isolé sans raison apparente)
-        index++;
-        if (index < segments.length) {
-          setTimeout(lireSuivant, 100);
+        etat.index++;
+        if (etat.index < segments.length) {
+          etat.timeoutId = setTimeout(() => {
+            if (!etat.arrete) lireSuivant();
+          }, 100);
         } else {
           setEnLecture(false);
           setEnPause(false);
@@ -188,12 +219,14 @@ export function LecteurVocal({ texte }: { texte: string }) {
       window.speechSynthesis.speak(utter);
     };
 
-    // Stocke la fonction d'arrêt dans la ref pour pouvoir l'appeler
-    // depuis le bouton "Arrêter" (ferme la boucle proprement)
+    // Stocke les contrôles dans la ref pour pouvoir arrêter depuis
+    // l'extérieur (bouton, cleanup au unmount)
     utterRef.current = {
       arreter: () => {
-        arrete = true;
+        etat.arrete = true;
+        if (etat.timeoutId) clearTimeout(etat.timeoutId);
       },
+      timeoutId: null,
     };
 
     lireSuivant();
