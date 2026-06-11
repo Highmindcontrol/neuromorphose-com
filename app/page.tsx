@@ -101,19 +101,13 @@ export default function AccueilPage() {
       <section className="border-b border-gris-trait bg-gris-fond">
         <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-28">
           <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
-            <div className="rounded-sm bg-encre p-10 text-blanc-casse">
-              <p className="meta text-gris-meta">Le livre</p>
-              <p className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.015em]">
-                Neuromorphose<span className="text-gris-meta">®</span>
-              </p>
-              <p className="mt-2 text-xs text-gris-meta">
-                François Le Moing · 2025
-              </p>
-              <p className="mt-6 text-xs leading-relaxed">
-                Le texte fondateur de la méthode. Présentation des trois
-                fondements, des protocoles d&apos;application et du cadre
-                éthique.
-              </p>
+            <div className="overflow-hidden rounded-sm shadow-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/couverture-livre.png"
+                alt="Couverture du livre « Les principes fondamentaux de la Neuromorphose® »"
+                className="aspect-[3/4] w-full object-cover"
+              />
             </div>
             <div>
               <h2 className="text-3xl font-semibold tracking-[-0.02em] text-encre md:text-4xl">

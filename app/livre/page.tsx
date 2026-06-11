@@ -9,19 +9,13 @@ export default function LivrePage() {
         <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-24">
           <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             <div>
-              <div className="aspect-[2/3] rounded-sm bg-encre p-10 text-blanc-casse shadow-xl">
-                <p className="meta text-gris-meta">Le livre fondateur</p>
-                <p className="mt-6 text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
-                  Neuromorphose<span className="text-gris-meta">®</span>
-                </p>
-                <p className="mt-3 text-sm text-gris-meta">
-                  La méthode
-                </p>
-                <p className="mt-auto pt-12 text-xs text-gris-meta">
-                  François Le Moing
-                  <br />
-                  Neuroactif Édition · 2025
-                </p>
+              <div className="overflow-hidden rounded-sm shadow-2xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/couverture-livre.png"
+                  alt="Couverture du livre « Les principes fondamentaux de la Neuromorphose® — Les formes qui transforment »"
+                  className="aspect-[3/4] w-full object-cover"
+                />
               </div>
             </div>
             <div>
