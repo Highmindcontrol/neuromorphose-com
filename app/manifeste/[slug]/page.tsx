@@ -8,6 +8,47 @@ import {
   getEntreeManifeste,
   getNavigationChapitre,
 } from "@/lib/manifeste";
+import { LecteurVocal } from "@/components/lecteur-vocal";
+
+/** Extrait le texte pur d'un markdown pour la synthèse vocale.
+ *  Retire la syntaxe MD, le HTML, les références bibliographiques,
+ *  les blocs de code, et garde uniquement la prose lisible. */
+function extraireTexteVocal(md: string): string {
+  return md
+    // Strip blocs de code
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    // Strip HTML inline
+    .replace(/<[^>]*>/g, " ")
+    // Strip images
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    // Strip liens (garde le texte)
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    // Strip emphasis markdown
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    // Strip titres markdown
+    .replace(/^#{1,6}\s+/gm, "")
+    // Strip puces de liste
+    .replace(/^[\s]*[-*•]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    // Strip blockquote markers
+    .replace(/^>\s?/gm, "")
+    // Strip séparateurs hr
+    .replace(/^[-*_]{3,}$/gm, "")
+    // Strip pipe tables
+    .replace(/\|/g, " ")
+    // Strip entités HTML basiques
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    // Nettoie les espaces multiples
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 export async function generateStaticParams() {
   return MANIFESTE.map((e) => ({ slug: e.slug }));
@@ -46,14 +87,30 @@ export default async function ChapitreManifestePage({
   );
 
   let html = "";
+  let textePourVocal = "";
   try {
     const raw = await readFile(filePath, "utf-8");
     html = await marked.parse(raw, { async: true });
+    textePourVocal = extraireTexteVocal(raw);
   } catch {
     html = `<p>Contenu introuvable : <code>${entree.fichier}.md</code></p>`;
   }
 
   const { precedent, suivant } = getNavigationChapitre(slug);
+
+  // Texte complet à lire : titre du chapitre + sous-titre + contenu
+  const texteCompletVocal = [
+    entree.numero === "Liminaire"
+      ? "Chapitre liminaire"
+      : entree.numero
+        ? `Chapitre ${entree.numero}`
+        : "",
+    entree.titre,
+    entree.sousTitre ?? "",
+    textePourVocal,
+  ]
+    .filter(Boolean)
+    .join(". ");
 
   return (
     <article>
@@ -97,6 +154,13 @@ export default async function ChapitreManifestePage({
               {entree.sousTitre}
             </p>
           )}
+        </div>
+      </section>
+
+      {/* === Lecteur vocal === */}
+      <section className="border-b border-gris-trait">
+        <div className="mx-auto max-w-3xl px-6 py-6 md:px-10">
+          <LecteurVocal texte={texteCompletVocal} />
         </div>
       </section>
 
