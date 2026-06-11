@@ -3,14 +3,14 @@ import Link from "next/link";
 export default function AccueilPage() {
   return (
     <article>
-      {/* === Hero === */}
+      {/* === Hero centré === */}
       <section className="border-b border-gris-trait">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-4xl px-6 py-24 md:px-10 md:py-32 text-center">
           <p className="meta text-gris-meta">La méthode</p>
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-encre md:text-7xl">
-            Neuromorphose<span className="text-gris-meta">®</span>
+          <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-encre md:text-7xl">
+            La Neuromorphose<span className="text-gris-meta">®</span>
           </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-gris-texte md:text-2xl">
+          <p className="mt-8 mx-auto max-w-3xl text-xl leading-relaxed text-gris-texte md:text-2xl">
             Une méthode d&apos;accompagnement qui utilise la visualisation
             de formes géométriques pour transformer le rapport au passé,
             au présent et au futur. <strong className="text-encre">
@@ -18,12 +18,12 @@ export default function AccueilPage() {
             transformation intérieure encadré par une fédération
             professionnelle.</strong>
           </p>
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
             <Link
               href="/methode"
               className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
             >
-              Découvrir la méthode
+              Découvrir la Neuromorphose
             </Link>
             <Link
               href="/livre"
@@ -42,7 +42,7 @@ export default function AccueilPage() {
           <div className="mt-8 grid gap-10 md:grid-cols-2">
             <div>
               <p className="text-2xl font-semibold leading-snug tracking-[-0.015em] text-encre md:text-3xl">
-                Ce que la Neuromorphose® fait
+                Ce qu&apos;elle fait
               </p>
               <ul className="mt-6 space-y-3 text-base text-gris-texte md:text-lg">
                 <li>Elle prend soin.</li>
