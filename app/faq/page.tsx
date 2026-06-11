@@ -5,7 +5,7 @@ export const metadata = {
 const QUESTIONS = [
   {
     q: "La Neuromorphose® est-elle reconnue scientifiquement ?",
-    a: "La méthode est jeune (formalisée publiquement en 2025) et son cadre de validation scientifique se met en place via la FFPN à partir de septembre 2026 — partenariats académiques, études structurées, publications. Aucune étude validée par les pairs n'est encore disponible. La page Recherche détaille les axes en cours de structuration.",
+    a: "Bien qu'elle repose sur un socle scientifique solidement établi et que ses fondements théoriques — les thérapies de mobilisation par la forme — aient fait leurs preuves depuis des décennies, la Neuromorphose® reste aujourd'hui, avec ses nouveaux outils cliniques EndoFormia® et EndoTonia®, à étudier et à analyser scientifiquement dans sa formulation contemporaine. La méthode telle que présentée ici est donc jeune (formalisée publiquement en 2025), et son cadre de validation scientifique se met en place via la FFPN à partir de septembre 2026 — partenariats académiques, études cliniques structurées, publications à comité de lecture à venir. La page Recherche détaille les cinq axes prioritaires en cours de structuration.",
   },
   {
     q: "Est-ce un soin médical ?",
