@@ -13,7 +13,7 @@ const QUESTIONS = [
   },
   {
     q: "Qui peut pratiquer la Neuromorphose® ?",
-    a: "Tout professionnel de l'accompagnement formé via le cursus officiel de Neuroactif Pro Santé et certifié par la FFPN. Cela inclut autant les psychologues, psychiatres, psychothérapeutes (santé mentale réglementée) que les hypnopraticiens, sophrologues, naturopathes, coachs, thérapeutes énergétiques (accompagnants non médicaux).",
+    a: "Tout professionnel de l'accompagnement formé via le cursus officiel de Neuroactif Pro Santé et certifié par la FFPN. Cela inclut autant les psychologues, psychiatres, psychothérapeutes (santé mentale réglementée) que les hypnopraticiens, sophrologues, naturopathes, coachs, thérapeutes énergétiques, accompagnants non médicaux mais dotés d'une véritable fibre pour l'accompagnement personnel et l'écoute active.",
   },
   {
     q: "Combien coûte une séance ?",
