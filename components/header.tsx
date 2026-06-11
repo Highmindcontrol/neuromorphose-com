@@ -9,12 +9,15 @@ export function Header() {
         </Link>
         <nav className="flex items-center gap-1 text-sm">
           <NavLink href="/methode">La méthode</NavLink>
+          <NavLink href="/manifeste">Manifeste</NavLink>
           <NavLink href="/livre">Le livre</NavLink>
-          <NavLink href="/outils">Les outils</NavLink>
-          <NavLink href="/recherche" className="hidden md:inline-flex">
+          <NavLink href="/outils" className="hidden md:inline-flex">
+            Les outils
+          </NavLink>
+          <NavLink href="/recherche" className="hidden lg:inline-flex">
             Recherche
           </NavLink>
-          <NavLink href="/faq" className="hidden md:inline-flex">FAQ</NavLink>
+          <NavLink href="/faq" className="hidden lg:inline-flex">FAQ</NavLink>
           <Link
             href="/contact"
             className="ml-2 rounded-full border border-encre bg-encre px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"

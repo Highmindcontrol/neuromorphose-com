@@ -74,3 +74,129 @@ body {
   font-style: italic;
   color: var(--color-gris-texte);
 }
+
+/* Prose pour les chapitres du manifeste scientifique — registre
+   académique, lecture longue confortable, hiérarchie typographique
+   sobre. Pas de drop cap (registre scientifique). */
+.prose-manifeste {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-encre);
+}
+.prose-manifeste h1 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-encre);
+}
+.prose-manifeste h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-gris-trait);
+  color: var(--color-encre);
+}
+.prose-manifeste h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-encre);
+}
+.prose-manifeste h4 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-encre);
+}
+.prose-manifeste p {
+  margin-bottom: 1.25rem;
+  color: var(--color-encre);
+}
+.prose-manifeste strong {
+  font-weight: 600;
+  color: var(--color-encre);
+}
+.prose-manifeste em {
+  font-style: italic;
+}
+.prose-manifeste blockquote {
+  border-left: 3px solid var(--color-encre);
+  padding-left: 1.5rem;
+  margin: 1.75rem 0;
+  font-style: italic;
+  color: var(--color-gris-texte);
+  font-size: 1.0625rem;
+}
+.prose-manifeste ul,
+.prose-manifeste ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.prose-manifeste ul {
+  list-style-type: none;
+}
+.prose-manifeste ul li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+.prose-manifeste ul li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--color-gris-meta);
+  font-weight: 700;
+}
+.prose-manifeste ol li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+.prose-manifeste hr {
+  border: none;
+  border-top: 1px solid var(--color-gris-trait);
+  margin: 3rem 0;
+}
+.prose-manifeste code {
+  background: var(--color-gris-fond);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+.prose-manifeste a {
+  color: var(--color-encre);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gris-meta);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+.prose-manifeste a:hover {
+  text-decoration-color: var(--color-encre);
+}
+.prose-manifeste table {
+  width: 100%;
+  margin: 1.75rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose-manifeste th,
+.prose-manifeste td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-gris-trait);
+  text-align: left;
+  vertical-align: top;
+}
+.prose-manifeste th {
+  font-weight: 600;
+  background: var(--color-gris-fond);
+  border-bottom: 2px solid var(--color-encre);
+}

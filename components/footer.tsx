@@ -39,6 +39,7 @@ export function Footer() {
             <p className="meta text-gris-meta">Naviguer</p>
             <ul className="mt-3 space-y-1.5 text-sm">
               <li><Link href="/methode" className="hover:text-gris-meta">La méthode</Link></li>
+              <li><Link href="/manifeste" className="hover:text-gris-meta">Manifeste scientifique</Link></li>
               <li><Link href="/livre" className="hover:text-gris-meta">Le livre</Link></li>
               <li><Link href="/outils" className="hover:text-gris-meta">Les outils</Link></li>
               <li><Link href="/recherche" className="hover:text-gris-meta">Recherche</Link></li>
