@@ -85,19 +85,87 @@ export default function LivrePage() {
       </section>
 
       <section>
-        <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-24">
+        <div className="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-24">
           <p className="meta text-gris-meta">À propos de l&apos;auteur</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-encre md:text-4xl">
-            François Le Moing
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-gris-texte md:text-lg">
-            Fondateur de la méthode Neuromorphose® et du groupe Ataraxis.
-            Praticien et chercheur autodidacte, il développe depuis plusieurs
-            années les protocoles d&apos;encodage géométrique des états
-            intérieurs et leur application en accompagnement. Le présent
-            ouvrage constitue la première formalisation publique complète
-            de la méthode.
-          </p>
+          <div className="mt-8 grid gap-10 md:grid-cols-[280px_1fr] md:gap-14 md:items-start">
+            {/* Photo de François Le Moing */}
+            <div className="overflow-hidden rounded-sm bg-gris-fond">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/francois-le-moing.jpg"
+                alt="François Le Moing, fondateur de la Neuromorphose®"
+                className="aspect-[3/4] w-full object-cover"
+                onError={(e) => {
+                  // Fallback placeholder si l'image n'est pas encore
+                  // déposée dans public/. Affiche un bloc gris avec
+                  // une mention discrète.
+                  const target = e.currentTarget;
+                  target.style.display = "none";
+                  target.parentElement?.classList.add(
+                    "flex",
+                    "aspect-[3/4]",
+                    "items-center",
+                    "justify-center",
+                    "border",
+                    "border-dashed",
+                    "border-gris-trait",
+                  );
+                  const fallback = document.createElement("p");
+                  fallback.className =
+                    "px-4 text-center text-xs uppercase tracking-wider text-gris-meta";
+                  fallback.textContent =
+                    "Photo à déposer dans public/francois-le-moing.jpg";
+                  target.parentElement?.appendChild(fallback);
+                }}
+              />
+            </div>
+
+            {/* Texte */}
+            <div>
+              <h2 className="text-3xl font-semibold tracking-[-0.02em] text-encre md:text-4xl">
+                François Le Moing
+              </h2>
+              <p className="mt-2 text-base italic text-gris-meta">
+                Fondateur de la Neuromorphose® et du groupe Ataraxis
+              </p>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-gris-texte md:text-lg">
+                <p>
+                  Praticien et chercheur autodidacte, François Le Moing
+                  observe depuis plus de dix ans, en cabinet et auprès de
+                  près de mille cinq cents personnes accompagnées, le
+                  pouvoir transformateur des <strong className="text-encre">
+                  formes intérieures</strong> qui émergent spontanément
+                  dans les états d&apos;attention partagée.
+                </p>
+                <p>
+                  De ces observations longues, croisées avec les avancées
+                  des neurosciences contemporaines, des approches
+                  somatiques et de l&apos;hypnose conversationnelle
+                  ericksonienne, il a progressivement formalisé une
+                  méthode clinique nouvelle — la{" "}
+                  <strong className="text-encre">Neuromorphose®</strong>{" "}
+                  — adossée à des outils numériques propriétaires
+                  (EndoFormia®, EndoTonia®) et à un cadre déontologique
+                  strict porté par la FFPN.
+                </p>
+                <p>
+                  Fondateur du groupe{" "}
+                  <a
+                    href="https://ataraxis.group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-encre underline hover:text-gris-meta"
+                  >
+                    Ataraxis
+                  </a>
+                  , il pilote le déploiement international de la méthode
+                  et la diffusion de ses outils auprès des praticiens
+                  formés. Le présent ouvrage constitue la première
+                  formalisation publique complète de la Neuromorphose®.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </article>
