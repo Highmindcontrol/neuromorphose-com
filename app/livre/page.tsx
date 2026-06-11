@@ -105,30 +105,39 @@ export default function LivrePage() {
                 François Le Moing
               </h2>
               <p className="mt-2 text-base italic text-gris-meta">
-                Fondateur de la Neuromorphose® et du groupe Ataraxis
+                Neuromorphologue, praticien en hypnose ericksonienne,
+                praticien PNL formé par Richard Bandler en personne
               </p>
               <div className="mt-6 space-y-5 text-base leading-relaxed text-gris-texte md:text-lg">
                 <p>
-                  Praticien et chercheur autodidacte, François Le Moing
-                  observe depuis plus de dix ans, en cabinet et auprès de
-                  près de mille cinq cents personnes accompagnées, le
-                  pouvoir transformateur des <strong className="text-encre">
-                  formes intérieures</strong> qui émergent spontanément
-                  dans les états d&apos;attention partagée.
+                  Chercheur autodidacte passionné depuis son plus jeune
+                  âge par les neurosciences et les pouvoirs du cerveau,
+                  il observe et étudie pendant plus de dix ans, sur près
+                  de <strong className="text-encre">1 500 clients</strong>{" "}
+                  reçus en cabinet, le pouvoir transformateur des{" "}
+                  <strong className="text-encre">formes intérieures</strong>{" "}
+                  qui émergent spontanément à la place des mots dans les
+                  états de transe légère, suscités par hypnose
+                  conversationnelle et protocole de cohérence cardiaque.
                 </p>
                 <p>
                   De ces observations longues, croisées avec les avancées
-                  des neurosciences contemporaines, des approches
-                  somatiques et de l&apos;hypnose conversationnelle
-                  ericksonienne, il a progressivement formalisé une
-                  méthode clinique nouvelle — la{" "}
+                  des neurosciences contemporaines et des approches
+                  somatiques, il a progressivement formalisé une méthode
+                  clinique nouvelle — la{" "}
                   <strong className="text-encre">Neuromorphose®</strong>{" "}
-                  — adossée à des outils numériques propriétaires
-                  (EndoFormia®, EndoTonia®) et à un cadre déontologique
-                  strict porté par la FFPN.
+                  — adossée à deux outils numériques dont il est le
+                  créateur ({" "}
+                  <strong className="text-encre">EndoFormia®</strong> et{" "}
+                  <strong className="text-encre">EndoTonia®</strong>) et
+                  à un cadre déontologique strict porté par la FFPN
+                  (Fédération Française des Praticiens de la
+                  Neuromorphose®), dont il est le président.
                 </p>
                 <p>
-                  Fondateur du groupe{" "}
+                  Auteur, conférencier, serial entrepreneur, il crée —
+                  après un mandat de maire de l&apos;un des plus beaux
+                  villages de France — le groupe{" "}
                   <a
                     href="https://ataraxis.group"
                     target="_blank"
@@ -136,11 +145,12 @@ export default function LivrePage() {
                     className="text-encre underline hover:text-gris-meta"
                   >
                     Ataraxis
-                  </a>
-                  , il pilote le déploiement international de la méthode
-                  et la diffusion de ses outils auprès des praticiens
-                  formés. Le présent ouvrage constitue la première
-                  formalisation publique complète de la Neuromorphose®.
+                  </a>{" "}
+                  afin de piloter le déploiement international de la
+                  méthode et de ses outils auprès des praticiens formés.
+                  Le présent ouvrage constitue la première formalisation
+                  publique complète de la Neuromorphose® et de ses
+                  outils cliniques et d&apos;apprentissage.
                 </p>
               </div>
             </div>
