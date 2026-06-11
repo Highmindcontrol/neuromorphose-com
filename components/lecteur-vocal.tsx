@@ -33,23 +33,50 @@ export function LecteurVocal({ texte }: { texte: string }) {
   const [vitesse, setVitesse] = useState<number>(1.0);
   const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  // Détection des voix disponibles (asynchrone selon les navigateurs)
+  // Détection des voix disponibles — Chrome et Safari sont
+  // asynchrones et n'envoient pas toujours l'événement onvoiceschanged
+  // de façon fiable. On combine donc 3 stratégies : appel direct,
+  // écoute d'événement, et retry périodique pendant 5 secondes pour
+  // attraper les voix cloud Google qui arrivent souvent en différé.
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
     setDispo(true);
 
+    const synth = window.speechSynthesis;
+
     function chargerVoix() {
-      const voix = window.speechSynthesis
+      const voix = synth
         .getVoices()
         .filter((v) => v.lang.toLowerCase().startsWith("fr"))
-        .sort((a, b) => a.name.localeCompare(b.name));
-      setVoixDispo(voix);
+        .sort((a, b) => {
+          // Privilégie les voix de qualité supérieure en tête de liste
+          // (Google et Microsoft Premium sont meilleures qu'Apple Compact)
+          const aPremium =
+            a.name.toLowerCase().includes("google") ||
+            a.name.toLowerCase().includes("premium") ||
+            a.name.toLowerCase().includes("enhanced");
+          const bPremium =
+            b.name.toLowerCase().includes("google") ||
+            b.name.toLowerCase().includes("premium") ||
+            b.name.toLowerCase().includes("enhanced");
+          if (aPremium && !bPremium) return -1;
+          if (!aPremium && bPremium) return 1;
+          return a.name.localeCompare(b.name);
+        });
+
+      setVoixDispo((precedentes) => {
+        // On ne remplace que si on a strictement plus de voix qu'avant
+        // (évite de perdre la liste si un getVoices() ponctuel renvoie [])
+        if (voix.length >= precedentes.length) return voix;
+        return precedentes;
+      });
 
       const stockee = window.localStorage.getItem(CLE_VOIX);
       if (stockee && voix.some((v) => v.name === stockee)) {
         setVoixChoisie(stockee);
       } else if (voix.length > 0) {
-        setVoixChoisie(voix[0].name);
+        // Choisit par défaut la première voix premium si dispo
+        setVoixChoisie((actuelle) => actuelle || voix[0].name);
       }
 
       const vitesseStockee = window.localStorage.getItem(CLE_VITESSE);
@@ -57,9 +84,17 @@ export function LecteurVocal({ texte }: { texte: string }) {
     }
 
     chargerVoix();
-    window.speechSynthesis.onvoiceschanged = chargerVoix;
+    synth.onvoiceschanged = chargerVoix;
+
+    // Retry périodique pendant 5 secondes — capture les voix cloud
+    // qui arrivent en différé sur Chrome
+    const intervals = [200, 500, 1000, 2000, 3500, 5000].map((ms) =>
+      setTimeout(chargerVoix, ms),
+    );
+
     return () => {
-      window.speechSynthesis.cancel();
+      intervals.forEach(clearTimeout);
+      synth.cancel();
     };
   }, []);
 
@@ -217,6 +252,16 @@ export function LecteurVocal({ texte }: { texte: string }) {
             : "Lecture vocale disponible"}
         </span>
       </div>
+      {voixDispo.length > 0 && voixDispo.length < 3 && (
+        <p className="mt-2 text-[10px] leading-relaxed text-gris-meta">
+          Seulement {voixDispo.length} voix française
+          {voixDispo.length > 1 ? "s" : ""} détectée
+          {voixDispo.length > 1 ? "s" : ""}. Pour des voix de meilleure
+          qualité (Google, Microsoft Premium), essaie d&apos;ouvrir ce
+          site dans <strong className="text-encre">Chrome</strong> ou{" "}
+          <strong className="text-encre">Edge</strong>.
+        </p>
+      )}
     </div>
   );
 }
