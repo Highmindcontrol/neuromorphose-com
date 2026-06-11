@@ -88,35 +88,14 @@ export default function LivrePage() {
         <div className="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-24">
           <p className="meta text-gris-meta">À propos de l&apos;auteur</p>
           <div className="mt-8 grid gap-10 md:grid-cols-[280px_1fr] md:gap-14 md:items-start">
-            {/* Photo de François Le Moing */}
+            {/* Photo de François Le Moing — format carré 667×667
+                récupéré depuis l'annuaire praticien neuroactif.com */}
             <div className="overflow-hidden rounded-sm bg-gris-fond">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/francois-le-moing.jpg"
                 alt="François Le Moing, fondateur de la Neuromorphose®"
-                className="aspect-[3/4] w-full object-cover"
-                onError={(e) => {
-                  // Fallback placeholder si l'image n'est pas encore
-                  // déposée dans public/. Affiche un bloc gris avec
-                  // une mention discrète.
-                  const target = e.currentTarget;
-                  target.style.display = "none";
-                  target.parentElement?.classList.add(
-                    "flex",
-                    "aspect-[3/4]",
-                    "items-center",
-                    "justify-center",
-                    "border",
-                    "border-dashed",
-                    "border-gris-trait",
-                  );
-                  const fallback = document.createElement("p");
-                  fallback.className =
-                    "px-4 text-center text-xs uppercase tracking-wider text-gris-meta";
-                  fallback.textContent =
-                    "Photo à déposer dans public/francois-le-moing.jpg";
-                  target.parentElement?.appendChild(fallback);
-                }}
+                className="aspect-square w-full object-cover"
               />
             </div>
 
