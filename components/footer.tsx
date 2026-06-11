@@ -78,7 +78,7 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-10 border-t border-gris-trait pt-6 text-xs text-gris-texte">
-          © {new Date().getFullYear()} Neuromorphose® — Tous droits réservés.
+          © {new Date().getFullYear()} François Le Moing — Tous droits réservés.
         </p>
       </div>
     </footer>
