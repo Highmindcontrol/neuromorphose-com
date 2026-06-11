@@ -24,6 +24,48 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const CLE_VOIX = "neuromorphose-com::lecteur-voix-choisie";
 const CLE_VITESSE = "neuromorphose-com::lecteur-vitesse";
 
+/** Découpe un texte en segments d'au plus `maxLen` caractères, en
+ *  respectant les frontières naturelles de phrase pour éviter de
+ *  couper au milieu d'une idée. Utile pour les voix cloud (Google
+ *  notamment) qui ne lisent pas correctement les textes trop longs. */
+function decouperPourSynthese(texte: string, maxLen = 200): string[] {
+  const phrases = texte
+    .split(/(?<=[.!?…])\s+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const segments: string[] = [];
+  let buffer = "";
+  for (const phrase of phrases) {
+    if (phrase.length > maxLen) {
+      // Phrase elle-même trop longue : on la coupe sur les virgules
+      if (buffer) {
+        segments.push(buffer);
+        buffer = "";
+      }
+      const morceaux = phrase.split(/,\s+/);
+      let courant = "";
+      for (const m of morceaux) {
+        if ((courant + ", " + m).length > maxLen) {
+          if (courant) segments.push(courant);
+          courant = m;
+        } else {
+          courant = courant ? courant + ", " + m : m;
+        }
+      }
+      if (courant) segments.push(courant);
+      continue;
+    }
+    if ((buffer + " " + phrase).length <= maxLen) {
+      buffer = buffer ? buffer + " " + phrase : phrase;
+    } else {
+      if (buffer) segments.push(buffer);
+      buffer = phrase;
+    }
+  }
+  if (buffer) segments.push(buffer);
+  return segments;
+}
+
 export function LecteurVocal({ texte }: { texte: string }) {
   const [dispo, setDispo] = useState(false);
   const [enLecture, setEnLecture] = useState(false);
@@ -31,7 +73,7 @@ export function LecteurVocal({ texte }: { texte: string }) {
   const [voixDispo, setVoixDispo] = useState<SpeechSynthesisVoice[]>([]);
   const [voixChoisie, setVoixChoisie] = useState<string>("");
   const [vitesse, setVitesse] = useState<number>(1.0);
-  const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const utterRef = useRef<{ arreter: () => void } | null>(null);
 
   // Détection des voix disponibles — Chrome et Safari sont
   // asynchrones et n'envoient pas toujours l'événement onvoiceschanged
@@ -101,21 +143,60 @@ export function LecteurVocal({ texte }: { texte: string }) {
   const lancerLecture = useCallback(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(texte);
+
     const voix = voixDispo.find((v) => v.name === voixChoisie);
-    if (voix) utter.voice = voix;
-    utter.lang = "fr-FR";
-    utter.rate = vitesse;
-    utter.onend = () => {
-      setEnLecture(false);
-      setEnPause(false);
+
+    // Découpe le texte en phrases puis en segments d'au plus 200
+    // caractères chacun. C'est nécessaire pour les voix cloud Google
+    // qui plantent silencieusement au-delà d'environ 200-300 chars.
+    // Les voix locales Apple n'ont pas cette limite mais le découpage
+    // ne les pénalise pas (l'enchaînement est fluide).
+    const segments = decouperPourSynthese(texte, 200);
+
+    if (segments.length === 0) return;
+
+    let index = 0;
+    let arrete = false;
+
+    const lireSuivant = () => {
+      if (arrete || index >= segments.length) {
+        setEnLecture(false);
+        setEnPause(false);
+        return;
+      }
+      const utter = new SpeechSynthesisUtterance(segments[index]);
+      if (voix) utter.voice = voix;
+      utter.lang = "fr-FR";
+      utter.rate = vitesse;
+      utter.onend = () => {
+        index++;
+        lireSuivant();
+      };
+      utter.onerror = (e) => {
+        console.error("[lecteur-vocal] erreur synthèse :", e);
+        // En cas d'erreur sur un segment, on passe au suivant plutôt
+        // que d'arrêter tout (la voix Google peut planter sur un
+        // segment isolé sans raison apparente)
+        index++;
+        if (index < segments.length) {
+          setTimeout(lireSuivant, 100);
+        } else {
+          setEnLecture(false);
+          setEnPause(false);
+        }
+      };
+      window.speechSynthesis.speak(utter);
     };
-    utter.onerror = () => {
-      setEnLecture(false);
-      setEnPause(false);
+
+    // Stocke la fonction d'arrêt dans la ref pour pouvoir l'appeler
+    // depuis le bouton "Arrêter" (ferme la boucle proprement)
+    utterRef.current = {
+      arreter: () => {
+        arrete = true;
+      },
     };
-    utterRef.current = utter;
-    window.speechSynthesis.speak(utter);
+
+    lireSuivant();
     setEnLecture(true);
     setEnPause(false);
   }, [texte, voixChoisie, voixDispo, vitesse]);
@@ -133,6 +214,8 @@ export function LecteurVocal({ texte }: { texte: string }) {
 
   function arreter() {
     if (!window.speechSynthesis) return;
+    // Stoppe la boucle d'enchaînement segment par segment
+    utterRef.current?.arreter();
     window.speechSynthesis.cancel();
     setEnLecture(false);
     setEnPause(false);
