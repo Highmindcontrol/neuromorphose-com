@@ -38,10 +38,7 @@ export default function LivrePage() {
                 <p><strong className="text-encre">Prix :</strong> 24 € · <span className="text-gris-meta">Version PDF gratuite en pré-publication</span></p>
               </div>
 
-              {/* === Encart offre PDF gratuite === */}
-              <EncartTelechargementPdf />
-
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href="#"
                   aria-disabled
@@ -56,6 +53,9 @@ export default function LivrePage() {
                   Lire un extrait
                 </a>
               </div>
+
+              {/* === Encart offre PDF gratuite === */}
+              <EncartTelechargementPdf />
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ function EncartTelechargementPdf() {
     <a
       href="/manifeste-neuromorphose.pdf"
       download
-      className="group mt-8 block rounded-sm bg-gradient-to-br from-[#e76f51] to-[#d4583a] p-6 text-blanc-casse shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl md:p-7"
+      className="group mt-8 block rounded-sm bg-gradient-to-br from-[#fb923c] via-[#f97316] to-[#ea580c] p-6 text-blanc-casse shadow-xl transition-all hover:scale-[1.01] hover:shadow-2xl md:p-7"
     >
       <div className="flex items-start gap-4">
         <span
@@ -212,7 +212,7 @@ function EncartTelechargementPdf() {
             l&apos;intégralité du manifeste scientifique en PDF — 11
             chapitres, bibliographie et glossaire compris.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blanc-casse px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#d4583a] transition-transform group-hover:translate-x-0.5">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blanc-casse px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#ea580c] transition-transform group-hover:translate-x-0.5">
             Télécharger maintenant
             <svg
               xmlns="http://www.w3.org/2000/svg"
