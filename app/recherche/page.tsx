@@ -34,7 +34,7 @@ export default function RecherchePage() {
           <ul className="mt-10 space-y-6">
             <Axe titre="Le son et la musique dans le développement cérébral" texte="Effets des fréquences sonores et structures musicales sur la plasticité neuronale, la concentration, l'apaisement, les processus mnésiques." />
             <Axe titre="Les ressentis émotionnels mesurables" texte="Cartographie systématique des ressentis avant/après séance, capturés en données structurées via EndoTonia®." />
-            <Axe titre="La futurisation comme dispositif d'ancrage" texte="Études longitudinales sur les effets de la projection structurée à 6 et 12 mois." />
+            <Axe titre="La futurisation comme dispositif d'ancrage et de lutte contre la procrastination" texte="Études longitudinales sur les effets de la projection structurée à 6 et 12 mois — capacité de la futurisation à maintenir l'élan, à faire reculer l'évitement, et à transformer une intention en mise en mouvement durable." />
             <Axe titre="La mémoire et le passé revisité" texte="Reconsolidation thérapeutique vs faux souvenirs — cadre éthique strict de la pratique." />
             <Axe titre="La posture du praticien et l'effet relationnel" texte="Quels marqueurs distinguent les séances à fort effet ? Formation à la posture optimale." />
           </ul>
