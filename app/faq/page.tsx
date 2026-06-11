@@ -25,7 +25,7 @@ const QUESTIONS = [
   },
   {
     q: "Quelle est la durée de la formation pour devenir praticien ?",
-    a: "Le cursus complet est conçu sur 6 à 9 mois, à raison de 4-6 heures par semaine. Il combine cours théoriques, supervisions, mises en situation avec sujets-cobayes et examens de validation. Plus d'informations sur Neuroactif Pro Santé.",
+    a: "Cette durée est directement liée à l'investissement fourni par l'étudiant. La formation est diffusée intégralement en ligne, grâce à des outils de dernière génération faisant intervenir l'intelligence artificielle dans les séances de pratique — tant en posture de praticien qu'en posture de patient potentiel. La délivrance de la certification dépend des résultats obtenus dans les différentes thématiques sujettes à notation. Avec un investissement de six à huit heures par semaine, le cursus peut être validé en environ trois mois. Plus d'informations sur Neuroactif Pro Santé.",
   },
   {
     q: "La méthode convient-elle aux enfants ?",
