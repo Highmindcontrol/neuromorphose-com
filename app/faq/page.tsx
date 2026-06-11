@@ -21,7 +21,7 @@ const QUESTIONS = [
   },
   {
     q: "Puis-je pratiquer en autonomie via les outils ?",
-    a: "Oui, les outils EndoFormia® et EndoTonia® sont accessibles aux particuliers sur la plateforme Neuroactif (espace particulier), avec un freemium gratuit et des fonctionnalités avancées en abonnement. L'accompagnement par un praticien certifié reste recommandé pour les problématiques profondes ou les situations de souffrance importante.",
+    a: "Oui, les outils EndoFormia® et EndoTonia® sont accessibles aux particuliers sur la plateforme Neuroactif (espace particulier), avec une nuance cependant. La partie de l'outil EndoFormia® dédiée au traitement ou au soulagement de maux ou de souffrances est strictement réservée à un accompagnement avec un praticien certifié. En revanche, son utilisation à des fins de futurisation, de lutte contre la procrastination ou d'ancrages pour la réalisation d'objectifs est disponible dans la partie premium du site.",
   },
   {
     q: "Quelle est la durée de la formation pour devenir praticien ?",
