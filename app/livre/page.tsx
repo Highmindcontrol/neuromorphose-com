@@ -32,17 +32,22 @@ export default function LivrePage() {
                 envisage de se former à la méthode.
               </p>
               <div className="mt-8 space-y-3 text-sm text-gris-texte">
-                <p><strong className="text-encre">Format :</strong> broché · 280 pages</p>
+                <p><strong className="text-encre">Format :</strong> broché · 280 pages (à paraître)</p>
                 <p><strong className="text-encre">Éditeur :</strong> Neuroactif Édition</p>
                 <p><strong className="text-encre">ISBN :</strong> à publier</p>
-                <p><strong className="text-encre">Prix :</strong> 24 €</p>
+                <p><strong className="text-encre">Prix :</strong> 24 € · <span className="text-gris-meta">Version PDF gratuite en pré-publication</span></p>
               </div>
-              <div className="mt-10 flex flex-wrap gap-3">
+
+              {/* === Encart offre PDF gratuite === */}
+              <EncartTelechargementPdf />
+
+              <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href="#"
-                  className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+                  aria-disabled
+                  className="cursor-not-allowed rounded-full border border-gris-trait bg-blanc-casse px-6 py-3 text-sm font-medium uppercase tracking-wider text-gris-meta"
                 >
-                  Commander le livre
+                  Commander le broché (bientôt)
                 </a>
                 <a
                   href="#"
@@ -51,10 +56,6 @@ export default function LivrePage() {
                   Lire un extrait
                 </a>
               </div>
-              <p className="mt-3 text-xs text-gris-meta">
-                Liens de commande à activer après ouverture officielle des
-                ventes.
-              </p>
             </div>
           </div>
         </div>
@@ -152,6 +153,85 @@ export default function LivrePage() {
         </div>
       </section>
     </article>
+  );
+}
+
+/**
+ * Encart d'offre de téléchargement gratuit du PDF du manifeste.
+ * Trois variantes de couleur disponibles — laisse la variante A
+ * (corail tendre) active, garde les deux autres en commentaire.
+ *
+ * Variante A — Corail tendre (#e76f51 → #d4583a) : chaleureux,
+ *   attractif, contraste fort avec la couverture sombre du livre,
+ *   communique l'urgence/l'offre sans agression visuelle.
+ *
+ * Variante B — Doré profond (#c9a45a → #a88845) : sophistiqué,
+ *   matche le doré du titre sur la couverture, registre premium
+ *   plutôt que promotionnel.
+ *
+ * Variante C — Encadré sobre + accent doré + badge GRATUIT :
+ *   le plus discret, blanc cassé avec liseré doré épais et badge
+ *   coin haut-droit. Pour les sites institutionnels stricts.
+ */
+function EncartTelechargementPdf() {
+  return (
+    <a
+      href="/manifeste-neuromorphose.pdf"
+      download
+      className="group mt-8 block rounded-sm bg-gradient-to-br from-[#e76f51] to-[#d4583a] p-6 text-blanc-casse shadow-lg transition-all hover:scale-[1.01] hover:shadow-xl md:p-7"
+    >
+      <div className="flex items-start gap-4">
+        <span
+          aria-hidden
+          className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blanc-casse/15"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-6 w-6"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+        </span>
+        <div className="flex-1">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-blanc-casse/90">
+            Offre de pré-publication · gratuit
+          </p>
+          <p className="mt-2 text-xl font-semibold leading-tight tracking-[-0.015em] md:text-2xl">
+            Téléchargez la version PDF complète du livre
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-blanc-casse/85">
+            En attendant la sortie du broché, profitez gratuitement de
+            l&apos;intégralité du manifeste scientifique en PDF — 11
+            chapitres, bibliographie et glossaire compris.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blanc-casse px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#d4583a] transition-transform group-hover:translate-x-0.5">
+            Télécharger maintenant
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5"
+              aria-hidden
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
   );
 }
 
