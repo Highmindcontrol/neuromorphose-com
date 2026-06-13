@@ -70,7 +70,7 @@ export default function OutilsPage() {
               href="https://neuroactif.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+              className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
             >
               Accéder à Neuroactif
             </a>
@@ -78,7 +78,7 @@ export default function OutilsPage() {
               href="https://neuroactif.com/pro"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-encre bg-blanc-casse px-6 py-3 text-sm font-medium uppercase tracking-wider text-encre transition-colors hover:bg-encre hover:text-blanc-casse"
+              className="rounded-full border border-encre bg-blanc-casse px-6 py-3 text-sm font-medium uppercase tracking-wider text-encre transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
             >
               Espace praticien
             </a>

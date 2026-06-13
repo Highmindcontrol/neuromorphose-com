@@ -79,7 +79,7 @@ export default function RecherchePage() {
           </p>
           <a
             href="mailto:recherche@neuromorphose.fr"
-            className="mt-8 inline-flex rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+            className="mt-8 inline-flex rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
           >
             recherche@neuromorphose.fr
           </a>

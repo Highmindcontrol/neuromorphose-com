@@ -42,14 +42,14 @@ export default function ManifesteIndexPage() {
           <div className="mt-12 flex flex-wrap gap-3">
             <Link
               href="/manifeste/chapitre-liminaire"
-              className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+              className="rounded-full border border-encre bg-encre px-6 py-3 text-sm font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
             >
               Commencer la lecture
             </Link>
             <a
               href="/manifeste-neuromorphose.pdf"
               download
-              className="rounded-full border border-encre bg-blanc-casse px-6 py-3 text-sm font-medium uppercase tracking-wider text-encre transition-colors hover:bg-encre hover:text-blanc-casse"
+              className="rounded-full border border-encre bg-blanc-casse px-6 py-3 text-sm font-medium uppercase tracking-wider text-encre transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
             >
               Télécharger le PDF complet
             </a>

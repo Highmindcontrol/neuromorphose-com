@@ -291,7 +291,7 @@ export function LecteurVocal({ texte }: { texte: string }) {
           <button
             type="button"
             onClick={lancerLecture}
-            className="inline-flex items-center gap-2 rounded-full border border-encre bg-encre px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+            className="inline-flex items-center gap-2 rounded-full border border-encre bg-encre px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
             aria-label="Écouter ce chapitre"
           >
             <svg
@@ -310,7 +310,7 @@ export function LecteurVocal({ texte }: { texte: string }) {
             <button
               type="button"
               onClick={basculerPause}
-              className="inline-flex items-center gap-2 rounded-full border border-encre bg-blanc-casse px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-encre transition-colors hover:bg-encre hover:text-blanc-casse"
+              className="inline-flex items-center gap-2 rounded-full border border-encre bg-blanc-casse px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-encre transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
               aria-label={enPause ? "Reprendre la lecture" : "Mettre en pause"}
             >
               {enPause ? "▶ Reprendre" : "❚❚ Pause"}
