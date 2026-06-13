@@ -178,7 +178,7 @@ function EncartTelechargementPdf() {
     <a
       href="/manifeste-neuromorphose.pdf"
       download
-      className="group mt-8 block rounded-sm bg-gradient-to-br from-[#60a5fa] via-[#3b82f6] to-[#2563eb] p-6 text-blanc-casse shadow-xl transition-all hover:scale-[1.01] hover:shadow-2xl md:p-7"
+      className="group mt-8 block rounded-sm bg-[#3b82f6] p-6 text-blanc-casse shadow-xl transition-all hover:scale-[1.01] hover:shadow-2xl md:p-7"
     >
       <div className="flex items-start gap-4">
         <span
@@ -212,7 +212,7 @@ function EncartTelechargementPdf() {
             l&apos;intégralité du manifeste scientifique en PDF — 11
             chapitres, bibliographie et glossaire compris.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blanc-casse px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#2563eb] transition-transform group-hover:translate-x-0.5">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-blanc-casse px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#2563eb] transition-all group-hover:translate-x-0.5 group-hover:bg-encre group-hover:text-blanc-casse">
             Télécharger maintenant
             <svg
               xmlns="http://www.w3.org/2000/svg"
