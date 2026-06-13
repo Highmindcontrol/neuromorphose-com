@@ -237,8 +237,10 @@ function EncartTelechargementPdf() {
 
 function Chapitre({ numero, titre, texte }: { numero: string; titre: string; texte: string }) {
   return (
-    <li className="flex gap-6">
-      <p className="flex-shrink-0 text-3xl font-light text-gris-meta">{numero}</p>
+    <li className="flex gap-5">
+      <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#3b82f6] text-sm font-semibold text-blanc-casse">
+        {numero}
+      </span>
       <div>
         <h3 className="text-lg font-semibold tracking-[-0.01em] text-encre">{titre}</h3>
         <p className="mt-2 text-base leading-relaxed text-gris-texte">{texte}</p>
