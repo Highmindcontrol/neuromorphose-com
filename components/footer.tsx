@@ -23,15 +23,6 @@ export function Footer() {
               >
                 Neuroactif Édition
               </a>
-              , filiale d&apos;
-              <a
-                href="https://ataraxis.group"
-                className="underline hover:text-encre"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ataraxis Group
-              </a>
               .
             </p>
           </div>
