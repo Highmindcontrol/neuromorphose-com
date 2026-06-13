@@ -17,7 +17,7 @@ export default function ManifesteIndexPage() {
         <div className="mx-auto max-w-4xl px-6 py-24 md:px-10 md:py-32">
           <p className="meta text-gris-meta">Le manifeste scientifique</p>
           <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-encre md:text-7xl">
-            La Neuromorphose<span className="text-gris-meta">®</span>
+            La Neuromorphose<sup className="ml-0.5 text-[0.4em] font-normal align-super text-gris-meta">®</sup>
           </h1>
           <p className="mt-6 text-xl italic leading-relaxed text-gris-texte md:text-2xl">
             Une thérapie des formes — héritière d&apos;Erickson, ancrée

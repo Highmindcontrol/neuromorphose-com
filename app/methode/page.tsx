@@ -9,7 +9,7 @@ export default function MethodePage() {
         <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-28">
           <p className="meta text-gris-meta">La méthode</p>
           <h1 className="mt-4 text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-encre md:text-6xl">
-            Comprendre la Neuromorphose<span className="text-gris-meta">®</span>
+            Comprendre la Neuromorphose<sup className="ml-0.5 text-[0.4em] font-normal align-super text-gris-meta">®</sup>
           </h1>
           <p className="mt-8 text-xl leading-relaxed text-gris-texte md:text-2xl">
             Une méthode d&apos;accompagnement qui encode les états
