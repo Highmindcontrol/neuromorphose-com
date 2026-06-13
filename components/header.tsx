@@ -20,7 +20,7 @@ export function Header() {
           <NavLink href="/faq" className="hidden lg:inline-flex">FAQ</NavLink>
           <Link
             href="/contact"
-            className="ml-2 rounded-full border border-encre bg-encre px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:bg-blanc-casse hover:text-encre"
+            className="ml-2 rounded-full border border-encre bg-encre px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-blanc-casse transition-colors hover:border-[#3b82f6] hover:bg-[#3b82f6] hover:text-blanc-casse"
           >
             Contact
           </Link>
