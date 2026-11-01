@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { checkPreviewAuth } from "@/lib/preview-auth";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const gate = checkPreviewAuth(request);
   if (gate) return gate;
   return NextResponse.next();
